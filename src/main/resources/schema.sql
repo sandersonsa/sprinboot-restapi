@@ -1,0 +1,5 @@
+CREATE TABLE pessoal (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(128) NOT NULL,
+    PRIMARY KEY (id)
+);
