@@ -47,12 +47,12 @@ public class PessoaController {
 
     @PostMapping
     public ResponseEntity<Pessoal> save(@RequestBody Pessoal pessoa) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(pessoa);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.salvar(pessoa));
     }
 
     @PutMapping
     public ResponseEntity<Pessoal> update(@RequestBody Pessoal pessoa) {
-        return ResponseEntity.status(HttpStatus.OK).body(pessoa);
+        return ResponseEntity.status(HttpStatus.OK).body(service.editar(pessoa));
     }
 
 
