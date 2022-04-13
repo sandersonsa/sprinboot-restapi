@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import xyz.sandersonsa.springbootrestapi.model.Pessoal;
 import xyz.sandersonsa.springbootrestapi.service.PessoaService;
 
@@ -25,13 +26,14 @@ public class PessoaController {
     private PessoaService service;
     
     @GetMapping
+    @Operation(summary = "Listar Pessoas", description = "Listar Pessoas")
     public ResponseEntity<List<Pessoal>> findAll() {
         List<Pessoal> lista = service.listarTodos();
 
         if(Objects.nonNull(lista) && !lista.isEmpty()) {
             return ResponseEntity.ok().body(lista);
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
     }
 
