@@ -19,5 +19,23 @@ public class PessoaService implements IPessoalService {
         // TODO Auto-generated method stub
         return repository.findAll();
     }
+
+    @Override
+    public Pessoal buscarPorId(Long id) {
+        // TODO Auto-generated method stub
+        return repository.getById(id);
+    }
+
+    @Override
+    public Pessoal salvar(Pessoal pessoa) {
+        // TODO Auto-generated method stub
+        return repository.save(pessoa);
+    }
+
+    @Override
+    public Pessoal editar(Pessoal pessoa) {
+        // TODO Auto-generated method stub
+        return repository.save(pessoa);
+    }
     
 }
