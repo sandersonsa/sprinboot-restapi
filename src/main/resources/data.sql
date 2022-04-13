@@ -1,1 +1,0 @@
-INSERT INTO PESSOAL (id, nome) VALUES (1,'Sanderson Sa');
