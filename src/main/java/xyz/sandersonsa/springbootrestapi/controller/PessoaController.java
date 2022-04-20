@@ -1,6 +1,7 @@
 package xyz.sandersonsa.springbootrestapi.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.slf4j.Slf4j;
 import xyz.sandersonsa.springbootrestapi.model.Pessoal;
 import xyz.sandersonsa.springbootrestapi.service.PessoaService;
 
 @RestController
 @RequestMapping("/pessoas")
+@Slf4j
 public class PessoaController {
 
     @Autowired
@@ -27,7 +31,12 @@ public class PessoaController {
     
     @GetMapping
     @Operation(summary = "Listar Pessoas", description = "Listar Pessoas")
-    public ResponseEntity<List<Pessoal>> findAll() {
+    public ResponseEntity<List<Pessoal>> findAll(@RequestHeader Map<String, String> headers) {
+        
+        headers.forEach((key, value) -> {
+            log.info(String.format("Header:: '%s' = %s", key, value));
+        });
+        
         List<Pessoal> lista = service.listarTodos();
 
         if(Objects.nonNull(lista) && !lista.isEmpty()) {
